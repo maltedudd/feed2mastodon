@@ -15,17 +15,15 @@ $counter = 0;
       break;
     } 
     $guid = $root->guid;
-    $imageUrl = $root->children('mp',true)->image[0]->data;
-    //$alt_text = $root->children('mp',true)->image[0]->alt;
+    $imageUrl =  $imageUrl = $root->children('mp',true)->image[0]->data;
+    $alt_text = $root->children('mp',true)->image[0]->alt;
     $description = $root->description;
     $keywords =  explode(',',str_replace("-","",preg_replace("/\s+/", "", $root->children('mp',true)->keywords))); //remove hypens and spaces for hashtags
     for($i = 0; $i < count($keywords); $i++) {
       $hashtags .= '#'.$keywords[$i].' ';
     }
 
-
-    
-file_put_contents($base_url.'/image.jpg', file_get_contents($imageUrl));  
+file_put_contents($base_url.'/images/image.jpg', file_get_contents($imageUrl));  
     $saved_feedentry = file_get_contents($base_url.'/last_entry_mastofeed.txt');
     if ($saved_feedentry != htmlspecialchars(($root->guid))) {
             echo date("Y-m-d H:i:s").' GUID nicht gleich, darum neu in Datei schreiben'.PHP_EOL;
@@ -54,13 +52,18 @@ file_put_contents($base_url.'/image.jpg', file_get_contents($imageUrl));
                   // if we are posting an image, send it to Mastodon
                   // using a single image here for demo purposes
                   if ($image == "1") {
+
+                    // enter the alternate text for the image, this helps with accessibility
+                  $fields = array(
+                   "description" => $alt_text
+                  );
           
                   // get location of image on the filesystem
-                  $imglocation = "image.jpg";
+                
 
                   // add images to files array, this is a single image for demo
                   $files = array();
-                  $files[$image] = file_get_contents($imglocation);
+                  $files[$image] = file_get_contents($base_url.'/images/image.jpg');
 
                   // make a multipart-form-data delimiter
                   $boundary = uniqid();
@@ -69,9 +72,11 @@ file_put_contents($base_url.'/image.jpg', file_get_contents($imageUrl));
                   $post_data = '';
                   $eol = "\r\n";
 
+
                   foreach ($fields as $name => $content) {
                     $post_data .= "--" . $delimiter . $eol . 'Content-Disposition: form-data; name="' . $name . "\"" . $eol . $eol . $content . $eol;
                   }
+                  
                   foreach ($files as $name => $content) {
                     $post_data .= "--" . $delimiter . $eol . 'Content-Disposition: form-data; name="file"; filename="' . $name . '"' . $eol . 'Content-Transfer-Encoding: binary' . $eol;
                     $post_data .= $eol;

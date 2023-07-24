@@ -37,6 +37,7 @@ Add a cronjob in your crontab
 
 ## Usage
 Feel free to change the script however you like, so that it fits to your feeds. getFeedAndPostToMastodon_tsde-special.php is an example for a special feed from tagesschau.de, which appends hashtags to the standard-post. 
+The last guid of the posted feed-item is stored in a text-file last_entry_mastofeed.txt. 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first

@@ -1,6 +1,6 @@
-# rss2mastodon
+# feed2mastodon
 
-rss2mastodon is a PHP-script to publish a mastodon-post out of standard rss2-feed. 
+feed2mastodon is a PHP-script to publish a mastodon-post out of standard rss2-feed. 
 
 ## Installation
 Copy files in a Folder on your server. The files do not have to be public accessible.

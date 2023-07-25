@@ -1,3 +1,4 @@
 /.vscode
 /.vscode/*
-.gitignore
+/.gitignore
+/.getFeedAndPostToMastodon_tsde-special.php

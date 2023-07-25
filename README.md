@@ -9,7 +9,7 @@ Make your changes in config.php
 ```bash
 <?php
 //Apsolute-Path of Server WITHOUT "/" at the end
-$base_url = "/homepages/u72111/test_feed2mastodon";
+$base_url = "/homepages/uXXXXX/test_feed2mastodon";
 
 //Feed-Url
 $feed_url = 'https://www.tagesschau.de/infoservices/alle-meldungen-100~rss2.xml';
@@ -36,8 +36,7 @@ Add a cronjob in your crontab
 ```
 
 ## Usage
-Feel free to change the script however you like, so that it fits to your feeds. getFeedAndPostToMastodon_tsde-special.php is an example for a special feed from tagesschau.de, which appends hashtags to the standard-post. 
-The last guid of the posted feed-item is stored in a text-file last_entry_mastofeed.txt. 
+Feel free to change the script however you like, so that it fits to your feeds. 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first
